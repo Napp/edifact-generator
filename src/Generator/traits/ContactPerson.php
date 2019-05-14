@@ -3,9 +3,7 @@
 namespace EDI\Generator\Traits;
 
 /**
- * Trait ContactPerson
- *
- * @package EDI\Generator\Traits
+ * Trait ContactPerson.
  */
 trait ContactPerson
 {
@@ -27,17 +25,17 @@ trait ContactPerson
     }
 
     /**
-     * @param string $contactPerson
-     * @param string $section
-     * @param null|string $prefix used for prefixing the variableName deliveryAddressContactPerson
+     * @param string      $contactPerson
+     * @param string      $section
+     * @param null|string $prefix        used for prefixing the variableName deliveryAddressContactPerson
      *
      * @return $this
      */
     public function setContactPerson($contactPerson, $section = '', $prefix = null)
     {
-        $var = "contactPerson";
+        $var = 'contactPerson';
         if ($prefix) {
-            $var = $prefix . ucfirst($var);
+            $var = $prefix.ucfirst($var);
         }
 
         $this->{$var} = [
@@ -61,17 +59,16 @@ trait ContactPerson
     }
 
     /**
-     * @param string $mailAddress
-     *
+     * @param string      $mailAddress
      * @param null|string $prefix
      *
      * @return $this
      */
     public function setMailAddress($mailAddress, $prefix = null)
     {
-        $var = "mailAddress";
+        $var = 'mailAddress';
         if ($prefix) {
-            $var = $prefix . ucfirst($var);
+            $var = $prefix.ucfirst($var);
         }
         $this->{$var} = [
             'COM',
@@ -80,6 +77,7 @@ trait ContactPerson
                 'EM',
             ],
         ];
+
         return $this;
     }
 
@@ -92,17 +90,16 @@ trait ContactPerson
     }
 
     /**
-     * @param string $phoneNumber
-     *
+     * @param string      $phoneNumber
      * @param null|string $prefix
      *
      * @return $this
      */
     public function setPhoneNumber($phoneNumber, $prefix = null)
     {
-        $var = "phoneNumber";
+        $var = 'phoneNumber';
         if ($prefix) {
-            $var = $prefix . ucfirst($var);
+            $var = $prefix.ucfirst($var);
         }
         $this->{$var} = [
             'COM',
@@ -111,6 +108,7 @@ trait ContactPerson
                 'TE',
             ],
         ];
+
         return $this;
     }
 
@@ -123,17 +121,16 @@ trait ContactPerson
     }
 
     /**
-     * @param string $faxNumber
-     *
+     * @param string      $faxNumber
      * @param null|string $prefix
      *
      * @return $this
      */
     public function setFaxNumber($faxNumber, $prefix = null)
     {
-        $var = "faxNumber";
+        $var = 'faxNumber';
         if ($prefix) {
-            $var = $prefix . ucfirst($var);
+            $var = $prefix.ucfirst($var);
         }
 
         $this->{$var} = [
@@ -143,6 +140,7 @@ trait ContactPerson
                 'FX',
             ],
         ];
+
         return $this;
     }
 }

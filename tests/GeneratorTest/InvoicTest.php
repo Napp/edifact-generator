@@ -9,8 +9,7 @@ use EDI\Generator\Invoic;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class InvoicTest
- * @package GeneratorTest
+ * Class InvoicTest.
  */
 final class InvoicTest extends TestCase
 {
@@ -26,7 +25,6 @@ final class InvoicTest extends TestCase
         );
     }
 
-
     public function testFreeText()
     {
         $this->assertEquals(
@@ -36,7 +34,7 @@ final class InvoicTest extends TestCase
                     'reduction of fees text',
                     'OSI',
                     'HAE'
-                )]))->get()
+                ), ]))->get()
         );
     }
 
@@ -45,10 +43,9 @@ final class InvoicTest extends TestCase
         $this->assertEquals(
             'CUX+2:EUR:9\'',
             (new Encoder([
-                (new Invoic)->setCurrency()->getCurrency()]))->get()
+                (new Invoic())->setCurrency()->getCurrency(), ]))->get()
         );
     }
-
 
     public function testInvoice()
     {
@@ -96,8 +93,7 @@ final class InvoicTest extends TestCase
                 ->setPhoneNumber('+49123456789')
                 ->setFaxNumber('+49123456789-11')
                 ->setVatNumber('DE 123456789')
-                ->setCurrency('EUR')
-            ;
+                ->setCurrency('EUR');
             $item = new Invoic\Item();
             $item
                 ->setPosition('1', 'articleId')
@@ -110,13 +106,11 @@ final class InvoicTest extends TestCase
                 ->setOrderDate($this->getDateTime())
                 ->setDeliveryNotePosition('20')
                 ->setDeliveryNoteNumber('deliverNoteNumber')
-                ->setDeliveryNoteDate($this->getDateTime())
-            ;
+                ->setDeliveryNoteDate($this->getDateTime());
             $item->addDiscount(-20.34, Invoic\Item::DISCOUNT_TYPE_ABSOLUTE);
             $item->addDiscount(3);
 
             $invoice->addItem($item);
-
 
             $invoice
                 ->setTotalPositionsAmount(100.22)
@@ -124,7 +118,6 @@ final class InvoicTest extends TestCase
                 ->setTaxableAmount(80)
                 ->setPayableAmount(100.22)
                 ->setTax(19, 19.11);
-
 
             $invoice->compose();
             $encoder = new Encoder($interchange->addMessage($invoice)->getComposed(), true);
@@ -134,13 +127,14 @@ final class InvoicTest extends TestCase
 
             $this->assertStringContainsString('UNT+40', $message);
         } catch (EdifactException $e) {
-            fwrite(STDOUT, "\n\nINVOICE\n" . $e->getMessage());
+            fwrite(STDOUT, "\n\nINVOICE\n".$e->getMessage());
         }
     }
 
     /**
-     * @return \DateTime
      * @throws \Exception
+     *
+     * @return \DateTime
      */
     private function getDateTime()
     {

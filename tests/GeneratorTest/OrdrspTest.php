@@ -9,8 +9,7 @@ use EDI\Generator\Ordrsp;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class OrdrspTest
- * @package GeneratorTest
+ * Class OrdrspTest.
  */
 class OrdrspTest extends TestCase
 {
@@ -73,7 +72,6 @@ class OrdrspTest extends TestCase
         $this->assertStringContainsString('UNT+11', $message);
     }
 
-
     public function testNameAndAddress()
     {
         $ordrsp = new Ordrsp();
@@ -93,7 +91,7 @@ class OrdrspTest extends TestCase
             [
                 '',
                 '',
-                'ZZZ'
+                'ZZZ',
             ],
             '',
             [
@@ -103,21 +101,21 @@ class OrdrspTest extends TestCase
             ],
             [
                 'street that is longer than 35 chara',
-                'cters'
+                'cters',
             ],
             [
                 'city that is longer than 35 charact',
-                'ers'
+                'ers',
             ],
             [
-                ''
+                '',
             ],
             [
-                'DE-123456'
+                'DE-123456',
             ],
             [
-                'DE'
-            ]
+                'DE',
+            ],
 
         ], $ordrsp->getDeliveryAddress());
     }

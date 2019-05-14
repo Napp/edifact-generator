@@ -5,9 +5,7 @@ namespace EDI\Generator\Traits;
 use EDI\Generator\EdifactDate;
 
 /**
- * Trait Item
- *
- * @package EDI\Generator\Traits
+ * Trait Item.
  */
 trait Item
 {
@@ -114,6 +112,7 @@ trait Item
      * @param string $identifier
      * @param string $qualifier
      * @param string $code
+     *
      * @return $this
      */
     public function setAdditionalProductId(string $identifier, string $qualifier = '1', string $code = 'SRV')
@@ -123,8 +122,8 @@ trait Item
             $qualifier,
             [
                 $identifier,
-                $code
-            ]
+                $code,
+            ],
         ];
 
         return $this;
@@ -174,14 +173,13 @@ trait Item
             'QTY',
             [
                 '12',
-                (string)$quantity,
+                (string) $quantity,
                 $unit,
             ],
         ];
 
         return $this;
     }
-
 
     /**
      * @param        $description
@@ -196,6 +194,7 @@ trait Item
         if (false === $temp) {
             $temp = '';
         }
+
         return [
             'IMD',
             '',
@@ -205,7 +204,7 @@ trait Item
                 '',
                 $organisation,
                 substr($description, 0, 35),
-                $temp
+                $temp,
             ],
         ];
     }
@@ -230,7 +229,6 @@ trait Item
         return $this->additionalText;
     }
 
-
     /**
      * @param $text
      *
@@ -251,7 +249,6 @@ trait Item
         return $this->specificationText;
     }
 
-
     /**
      * @param $text
      *
@@ -271,7 +268,6 @@ trait Item
     {
         return $this->generatedText;
     }
-
 
     /**
      * @param $text
@@ -295,14 +291,13 @@ trait Item
         $this->{$varName} = str_split(mb_substr($text, 0, $maxLength), $lineLength);
         $nr = 0;
         foreach ($this->{$varName} as $line) {
-            $property = $varName . $nr++;
+            $property = $varName.$nr++;
             $this->{$property} = self::addIMDSegment($line, $type);
             $this->addKeyToCompose($property);
         }
 
         return $this;
     }
-
 
     /**
      * @return array
@@ -394,8 +389,8 @@ trait Item
 
     /**
      * @param string|\DateTime $deliveryNoteDate
-     * @param int $type
-     * @param int $formatQuantifier
+     * @param int              $type
+     * @param int              $formatQuantifier
      *
      * @return Item
      */
@@ -418,7 +413,7 @@ trait Item
     }
 
     /**
-     * @param string|integer $deliveryNotePosition
+     * @param string|int $deliveryNotePosition
      *
      * @return Item
      */

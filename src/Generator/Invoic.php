@@ -8,9 +8,9 @@ use EDI\Generator\Traits\NameAndAddress;
 use EDI\Generator\traits\VatAndCurrency;
 
 /**
- * Class Invoic
+ * Class Invoic.
+ *
  * @url http://www.unece.org/trade/untdid/d96b/trmd/invoic_s.htm
- * @package EDI\Generator
  */
 class Invoic extends Message
 {
@@ -70,10 +70,10 @@ class Invoic extends Message
     /** @var array */
     protected $taxAmount;
 
-
     /**
      * Invoic constructor.
-     * @param null $messageId
+     *
+     * @param null   $messageId
      * @param string $identifier
      * @param string $version
      * @param string $release
@@ -99,7 +99,6 @@ class Invoic extends Message
         $this->items = [];
     }
 
-
     /**
      * @param $item Item
      */
@@ -108,10 +107,10 @@ class Invoic extends Message
         $this->items[] = $item;
     }
 
-
     /**
-     * @return $this
      * @throws EdifactException
+     *
+     * @return $this
      */
     public function compose()
     {
@@ -136,6 +135,7 @@ class Invoic extends Message
         ]);
 
         parent::compose();
+
         return $this;
     }
 
@@ -150,8 +150,10 @@ class Invoic extends Message
     /**
      * @param string $invoiceNumber
      * @param string $documentType
-     * @return Invoic
+     *
      * @throws EdifactException
+     *
+     * @return Invoic
      */
     public function setInvoiceNumber($invoiceNumber, $documentType = self::TYPE_INVOICE)
     {
@@ -160,9 +162,10 @@ class Invoic extends Message
             self::TYPE_CREDIT_NOTE,
             self::TYPE_SERVICE_CREDIT,
             self::TYPE_SERVICE_INVOICE,
-            self::TYPE_BONUS
+            self::TYPE_BONUS,
         ]);
         $this->invoiceNumber = self::addBGMSegment($invoiceNumber, $documentType);
+
         return $this;
     }
 
@@ -176,12 +179,15 @@ class Invoic extends Message
 
     /**
      * @param string $invoiceDate
-     * @return Invoic
+     *
      * @throws EdifactException
+     *
+     * @return Invoic
      */
     public function setInvoiceDate($invoiceDate)
     {
         $this->invoiceDate = $this->addDTMSegment($invoiceDate, '3');
+
         return $this;
     }
 
@@ -195,12 +201,15 @@ class Invoic extends Message
 
     /**
      * @param $deliveryDate
-     * @return Invoic
+     *
      * @throws EdifactException
+     *
+     * @return Invoic
      */
     public function setDeliveryDate($deliveryDate)
     {
         $this->deliveryDate = $this->addDTMSegment($deliveryDate, '35');
+
         return $this;
     }
 
@@ -214,15 +223,15 @@ class Invoic extends Message
 
     /**
      * @param string $reductionOfFeesText
+     *
      * @return Invoic
      */
     public function setReductionOfFeesText($reductionOfFeesText)
     {
         $this->reductionOfFeesText = self::addFTXSegment($reductionOfFeesText, 'OSI', 'HAE');
+
         return $this;
     }
-
-
 
     /**
      * @return array
@@ -234,11 +243,13 @@ class Invoic extends Message
 
     /**
      * @param string $invoiceDescription
+     *
      * @return Invoic
      */
     public function setInvoiceDescription($invoiceDescription)
     {
         $this->invoiceDescription = self::addFTXSegment($invoiceDescription, 'OSI');
+
         return $this;
     }
 
@@ -248,6 +259,7 @@ class Invoic extends Message
     public function setPositionSeparator()
     {
         $this->positionSeparator = ['UNS', 'S'];
+
         return $this;
     }
 
@@ -261,11 +273,13 @@ class Invoic extends Message
 
     /**
      * @param string|float $totalPositionsAmount
+     *
      * @return Invoic
      */
     public function setTotalPositionsAmount($totalPositionsAmount)
     {
         $this->totalPositionsAmount = self::addMOASegment('79', $totalPositionsAmount);
+
         return $this;
     }
 
@@ -279,11 +293,13 @@ class Invoic extends Message
 
     /**
      * @param string|float $basisAmount
+     *
      * @return Invoic
      */
     public function setBasisAmount($basisAmount)
     {
         $this->basisAmount = self::addMOASegment('56', $basisAmount);
+
         return $this;
     }
 
@@ -297,11 +313,13 @@ class Invoic extends Message
 
     /**
      * @param string|float $taxableAmount
+     *
      * @return Invoic
      */
     public function setTaxableAmount($taxableAmount)
     {
         $this->taxableAmount = self::addMOASegment('125', $taxableAmount);
+
         return $this;
     }
 
@@ -315,17 +333,20 @@ class Invoic extends Message
 
     /**
      * @param string|float $payableAmount
+     *
      * @return Invoic
      */
     public function setPayableAmount($payableAmount)
     {
         $this->payableAmount = self::addMOASegment('9', $payableAmount);
+
         return $this;
     }
 
     /**
      * @param string|float $value
      * @param string|float $amount
+     *
      * @return $this
      */
     public function setTax($value, $amount)
@@ -340,10 +361,11 @@ class Invoic extends Message
                 '',
                 '',
                 '',
-                EdiFactNumber::convert($value, 0)
+                EdiFactNumber::convert($value, 0),
             ],
         ];
         $this->taxAmount = self::addMOASegment('150', $amount);
+
         return $this;
     }
 }

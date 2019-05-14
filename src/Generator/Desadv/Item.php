@@ -5,8 +5,7 @@ namespace EDI\Generator\Desadv;
 use EDI\Generator\Base;
 
 /**
- * Class Item
- * @package EDI\Generator\Desadv
+ * Class Item.
  */
 class Item extends Base
 {

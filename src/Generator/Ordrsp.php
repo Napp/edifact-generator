@@ -6,10 +6,9 @@ use EDI\Generator\Traits\ContactPerson;
 use EDI\Generator\Traits\NameAndAddress;
 
 /**
- * Class Ordrsp
- * @url http://www.unece.org/trade/untdid/d96b/trmd/ordrsp_s.htm
+ * Class Ordrsp.
  *
- * @package EDI\Generator
+ * @url http://www.unece.org/trade/untdid/d96b/trmd/ordrsp_s.htm
  */
 class Ordrsp extends Message
 {
@@ -73,7 +72,7 @@ class Ordrsp extends Message
     /**
      * Ordrsp constructor.
      *
-     * @param null $messageId
+     * @param null   $messageId
      * @param string $identifier
      * @param string $version
      * @param string $release
@@ -98,7 +97,6 @@ class Ordrsp extends Message
         );
     }
 
-
     /**
      * @param $item Item
      */
@@ -108,8 +106,9 @@ class Ordrsp extends Message
     }
 
     /**
-     * @return $this
      * @throws EdifactException
+     *
+     * @return $this
      */
     public function compose()
     {
@@ -139,7 +138,6 @@ class Ordrsp extends Message
         return $this->orderConfirmationNumber;
     }
 
-
     /**
      * @param string $orderConfirmationNumber
      * @param string $documentType
@@ -153,6 +151,7 @@ class Ordrsp extends Message
             $documentType,
             $orderConfirmationNumber,
         ];
+
         return $this;
     }
 
@@ -167,12 +166,14 @@ class Ordrsp extends Message
     /**
      * @param string|\DateTime $orderConfirmationDate
      *
-     * @return Ordrsp
      * @throws EdifactException
+     *
+     * @return Ordrsp
      */
     public function setOrderConfirmationDate($orderConfirmationDate)
     {
         $this->orderConfirmationDate = $this->addDTMSegment($orderConfirmationDate, '4');
+
         return $this;
     }
 
@@ -186,15 +187,17 @@ class Ordrsp extends Message
 
     /**
      * @param string|\DateTime $deliveryDate
-     * @param int $type
-     * @param int $formatQuantifier
+     * @param int              $type
+     * @param int              $formatQuantifier
+     *
+     * @throws EdifactException
      *
      * @return Ordrsp
-     * @throws EdifactException
      */
     public function setDeliveryDate($deliveryDate, $type = EdifactDate::TYPE_DELIVERY_DATE_REQUESTED, $formatQuantifier = EdifactDate::DATE)
     {
         $this->deliveryDate = $this->addDTMSegment($deliveryDate, $type, $formatQuantifier);
+
         return $this;
     }
 
@@ -214,6 +217,7 @@ class Ordrsp extends Message
     public function setOrderNumber($orderNumber)
     {
         $this->orderNumber = $this->addRFFSegment('VN', $orderNumber);
+
         return $this;
     }
 
@@ -234,6 +238,7 @@ class Ordrsp extends Message
             'UNS',
             'S',
         ];
+
         return $this;
     }
 
@@ -253,6 +258,7 @@ class Ordrsp extends Message
     public function setOrderInstruction($orderInstruction)
     {
         $this->orderInstruction = self::addFTXSegment($orderInstruction, 'ORI');
+
         return $this;
     }
 
@@ -272,6 +278,7 @@ class Ordrsp extends Message
     public function setAdditionalReferenceNumber($additionalReferenceNumber)
     {
         $this->additionalReferenceNumber = self::addRFFSegment('ACD', $additionalReferenceNumber);
+
         return $this;
     }
 
@@ -291,6 +298,7 @@ class Ordrsp extends Message
     public function setTransportDocumentNumber($transportDocumentNumber)
     {
         $this->transportDocumentNumber = self::addRFFSegment('AAS', $transportDocumentNumber);
+
         return $this;
     }
 
@@ -310,6 +318,7 @@ class Ordrsp extends Message
     public function setProjectNumber($projectNumber)
     {
         $this->projectNumber = self::addRFFSegment('AEP', $projectNumber);
+
         return $this;
     }
 
@@ -329,6 +338,7 @@ class Ordrsp extends Message
     public function setBeneficiaryReference($beneficiaryReference)
     {
         $this->beneficiaryReference = self::addRFFSegment('AFO', $beneficiaryReference);
+
         return $this;
     }
 
@@ -348,6 +358,7 @@ class Ordrsp extends Message
     public function setBeneficiaryReference2($beneficiaryReference2)
     {
         $this->beneficiaryReference2 = self::addRFFSegment('AFP', $beneficiaryReference2);
+
         return $this;
     }
 }

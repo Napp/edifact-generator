@@ -6,14 +6,13 @@ use EDI\Generator\EdifactDate;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class EdifactDateTest
- * @package GeneratorTest
+ * Class EdifactDateTest.
  */
 class EdifactDateTest extends TestCase
 {
-
     /**
-     * date format test
+     * date format test.
+     *
      * @throws \EDI\Generator\EdifactException
      */
     public function testDateFormat()
@@ -25,7 +24,8 @@ class EdifactDateTest extends TestCase
     }
 
     /**
-     * date format test
+     * date format test.
+     *
      * @throws \EDI\Generator\EdifactException
      */
     public function testDateTimeFormat()
@@ -36,9 +36,6 @@ class EdifactDateTest extends TestCase
         );
     }
 
-    /**
-     *
-     */
     public function testParseFormat()
     {
         $dateTime = (new \DateTime())
@@ -49,7 +46,6 @@ class EdifactDateTest extends TestCase
             EdifactDate::parseFormat('2018-01-23 10:00:00', EdifactDate::DATETIME)
         );
     }
-
 
     public function testParseTimeFormat()
     {

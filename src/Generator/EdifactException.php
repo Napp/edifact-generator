@@ -3,8 +3,7 @@
 namespace EDI\Generator;
 
 /**
- * Class EdifactException
- * @package EDI\Generator
+ * Class EdifactException.
  */
 class EdifactException extends \Exception
 {

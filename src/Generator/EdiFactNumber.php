@@ -3,8 +3,7 @@
 namespace EDI\Generator;
 
 /**
- * Class EdiFactNumber
- * @package EDI\Generator
+ * Class EdiFactNumber.
  */
 class EdiFactNumber
 {
@@ -12,9 +11,10 @@ class EdiFactNumber
     const DECIMAL_POINT = '.';
 
     /**
-     * @param string|float|double $value
-     * @param int $decimals
-     * @param string $format
+     * @param string|float|float $value
+     * @param int                $decimals
+     * @param string             $format
+     *
      * @return string
      */
     public static function convert($value, $decimals = 2, $format = self::DECIMAL_COMMA)

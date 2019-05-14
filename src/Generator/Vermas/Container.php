@@ -3,8 +3,7 @@
 namespace EDI\Generator\Vermas;
 
 /**
- * Class Container
- * @package EDI\Generator\Vermas
+ * Class Container.
  */
 class Container
 {
@@ -23,10 +22,12 @@ class Container
     }
 
     /**
-     * $size = 22G1, 42G1, etc; 306 = smdg, 6436 = ISO spec
+     * $size = 22G1, 42G1, etc; 306 = smdg, 6436 = ISO spec.
+     *
      * @param $number
      * @param $size
      * @param bool $fixedFields
+     *
      * @return \EDI\Generator\Vermas\Container
      */
     public function setContainer($number, $size, $fixedFields = false)
@@ -42,6 +43,7 @@ class Container
     /**
      * @param $booking
      * @param null $sequence
+     *
      * @return \EDI\Generator\Vermas\Container
      */
     public function setBooking($booking, $sequence = null)
@@ -58,9 +60,11 @@ class Container
 
     /**
      * $seal = free text
-     * $sealIssuer = DE 9303
+     * $sealIssuer = DE 9303.
+     *
      * @param $seal
      * @param $sealIssuer
+     *
      * @return \EDI\Generator\Vermas\Container
      */
     public function setSeal($seal, $sealIssuer)
@@ -73,10 +77,12 @@ class Container
     /**
      * $weightMode = DE 6313
      * $weight = free text
-     * $unit = KGM or LBS
+     * $unit = KGM or LBS.
+     *
      * @param $weightMode
      * @param $weight
      * @param string $unit
+     *
      * @return \EDI\Generator\Vermas\Container
      */
     public function setMeasures($weightMode, $weight, $unit = 'KGM')
@@ -88,9 +94,11 @@ class Container
 
     /**
      * $type = SM1 | SM2
-     * $cert = documentation identification
+     * $cert = documentation identification.
+     *
      * @param $type
      * @param $cert
+     *
      * @return \EDI\Generator\Vermas\Container
      */
     public function setWeighMethod($type, $cert)
@@ -102,8 +110,10 @@ class Container
 
     /**
      * $type = SM1 | SM2
-     * $cert = documentation identification
+     * $cert = documentation identification.
+     *
      * @param null $date
+     *
      * @return \EDI\Generator\Vermas\Container
      */
     public function setWeighDate($date = null)
@@ -117,8 +127,10 @@ class Container
     }
 
     /**
-     * $spcShipper = SOLAS verified gross mass responsible party
+     * $spcShipper = SOLAS verified gross mass responsible party.
+     *
      * @param $spcWpa
+     *
      * @return \EDI\Generator\Vermas\Container
      */
     public function setWeighingStationId($spcWpa)
@@ -129,9 +141,11 @@ class Container
     }
 
     /**
-     * $spcShipper = SOLAS verified gross mass responsible party
+     * $spcShipper = SOLAS verified gross mass responsible party.
+     *
      * @param $spcShipper
      * @param null $spcCity
+     *
      * @return \EDI\Generator\Vermas\Container
      */
     public function setShipper($spcShipper, $spcCity = null)
@@ -149,11 +163,13 @@ class Container
      * $cntType: RP = responsible person (DE 3139)
      * $cntTitle: free text
      * $comData: free text
-     * $comType: DE 3155
+     * $comType: DE 3155.
+     *
      * @param $cntType
      * @param $cntTitle
      * @param null $comType
      * @param null $comData
+     *
      * @return \EDI\Generator\Vermas\Container
      */
     public function setSpcContact($cntType, $cntTitle, $comType = null, $comData = null)

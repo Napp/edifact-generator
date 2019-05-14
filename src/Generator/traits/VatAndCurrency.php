@@ -5,9 +5,9 @@ namespace EDI\Generator\traits;
 use EDI\Generator\EdifactCurrency;
 
 /**
- * Trait VatAndCurrency
+ * Trait VatAndCurrency.
+ *
  * @url http://www.unece.org/trade/untdid/d96b/uncl/uncl6343.htm
- * @package EDI\Generator\traits
  */
 trait VatAndCurrency
 {
@@ -51,6 +51,7 @@ trait VatAndCurrency
     /**
      * @param string $currency
      * @param string $qualifier
+     *
      * @return $this
      */
     public function setCurrency($currency = 'EUR', $qualifier = EdifactCurrency::CURRENCY_ORDER)
@@ -60,8 +61,8 @@ trait VatAndCurrency
             [
                 '2',
                 $currency,
-                $qualifier
-            ]
+                $qualifier,
+            ],
         ];
 
         return $this;
@@ -69,6 +70,7 @@ trait VatAndCurrency
 
     /**
      * @param string $currency
+     *
      * @return $this
      */
     public function setSupplierCurrency($currency = 'EUR')
@@ -80,6 +82,7 @@ trait VatAndCurrency
 
     /**
      * @param string $currency
+     *
      * @return $this
      */
     public function setInvoiceCurrency($currency = 'EUR')
@@ -91,6 +94,7 @@ trait VatAndCurrency
 
     /**
      * @param string $currency
+     *
      * @return $this
      */
     public function setQuotationCurrency($currency = 'EUR')
@@ -102,6 +106,7 @@ trait VatAndCurrency
 
     /**
      * @param string $currency
+     *
      * @return $this
      */
     public function setAccountCurrency($currency = 'EUR')
@@ -113,6 +118,7 @@ trait VatAndCurrency
 
     /**
      * @param string $currency
+     *
      * @return $this
      */
     public function setPaymentCurrency($currency = 'EUR')

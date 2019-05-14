@@ -3,9 +3,7 @@
 namespace EDI\Generator;
 
 /**
- * Class EdifactDate
- *
- * @package EDI\Generator
+ * Class EdifactDate.
  */
 class EdifactDate
 {
@@ -19,7 +17,7 @@ class EdifactDate
     const SHIPPING_WEEK_FORMAT = 'YW';
 
     const SHIPPING_UNDEFINED = 999;
-    const SHIPPING_UNDEFINED_FORMAT = "";
+    const SHIPPING_UNDEFINED_FORMAT = '';
 
     const TYPE_ORDER_DATE = 4;
     const TYPE_DELIVERY_DATE_REQUESTED = 2;
@@ -28,20 +26,20 @@ class EdifactDate
     const TYPE_DELIVERY_DATE_EARLIEST = 64;
     const TYPE_DEPARTURE_DATE_ESTIMATED = 133;
 
-
     /**
-     * returns an valid edifact date format
+     * returns an valid edifact date format.
      *
      * @param string $string
-     * @param int $format
+     * @param int    $format
+     *
+     * @throws EdifactException
      *
      * @return string
-     * @throws EdifactException
      */
     public static function get($string, $format = self::DATE)
     {
         if (empty($string)) {
-            return "";
+            return '';
         }
         switch ($format) {
             case self::DATE:
@@ -65,7 +63,7 @@ class EdifactDate
         }
         $dateTime = self::parseFormat($string, $format);
         if (!$dateTime) {
-            throw new EdifactException('invalid date provided: ' . $string);
+            throw new EdifactException('invalid date provided: '.$string);
         }
 
         return $dateTime->format($dateFormat);
@@ -73,7 +71,7 @@ class EdifactDate
 
     /**
      * @param string|\DateTime $string
-     * @param integer $format
+     * @param int              $format
      *
      * @return bool|\DateTime
      */
