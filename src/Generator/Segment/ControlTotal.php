@@ -49,6 +49,7 @@ class ControlTotal extends Segment
      * Set Measurement Unit Code.
      *
      * @param string $sMeasurementUnitCode
+     *
      * @return self $this
      */
     public function setMeasurementUnitCode(string $sMeasurementUnitCode): self

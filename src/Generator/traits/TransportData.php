@@ -3,8 +3,7 @@
 namespace EDI\Generator\Traits;
 
 /**
- * Trait TransportData
- * @package EDI\Generator\Traits
+ * Trait TransportData.
  */
 trait TransportData
 {
@@ -21,7 +20,8 @@ trait TransportData
 
     /**
      * @param string $trackingCode
-     * @param int $type
+     * @param int    $type
+     *
      * @return self
      */
     public function setTransportData($trackingCode, $type = 30)
@@ -33,9 +33,9 @@ trait TransportData
             40,
             50,
             60,
-            90
+            90,
         ]);
-        $this->transportData = ['TDT', '13', $trackingCode, (string)$type];
+        $this->transportData = ['TDT', '13', $trackingCode, (string) $type];
 
         return $this;
     }

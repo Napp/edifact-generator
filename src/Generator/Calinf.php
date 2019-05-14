@@ -3,8 +3,7 @@
 namespace EDI\Generator;
 
 /**
- * Class Calinf
- * @package EDI\Generator
+ * Class Calinf.
  */
 class Calinf extends Message
 {
@@ -21,12 +20,12 @@ class Calinf extends Message
     /**
      * Construct.
      *
-     * @param mixed $sMessageReferenceNumber (0062)
-     * @param string $sMessageType (0065)
-     * @param string $sMessageVersionNumber (0052)
-     * @param string $sMessageReleaseNumber (0054)
+     * @param mixed  $sMessageReferenceNumber        (0062)
+     * @param string $sMessageType                   (0065)
+     * @param string $sMessageVersionNumber          (0052)
+     * @param string $sMessageReleaseNumber          (0054)
      * @param string $sMessageControllingAgencyCoded (0051)
-     * @param string $sAssociationAssignedCode (0057)
+     * @param string $sAssociationAssignedCode       (0057)
      */
     public function __construct(
         $sMessageReferenceNumber = null,
@@ -49,8 +48,10 @@ class Calinf extends Message
     }
 
     /**
-     * Date of the message submission
+     * Date of the message submission.
+     *
      * @param $dtm
+     *
      * @return \EDI\Generator\Calinf
      */
     public function setDTMMessageSendingTime($dtm)
@@ -61,9 +62,11 @@ class Calinf extends Message
     }
 
     /**
-     * Message sender (usually the vessel agent)
+     * Message sender (usually the vessel agent).
+     *
      * @param $code
      * @param $name
+     *
      * @return \EDI\Generator\Calinf
      */
     public function setSender($code, $name)
@@ -74,9 +77,11 @@ class Calinf extends Message
     }
 
     /**
-     * Message receiver (usually the terminal)
+     * Message receiver (usually the terminal).
+     *
      * @param $code
      * @param $name
+     *
      * @return \EDI\Generator\Calinf
      */
     public function setReceiver($code, $name)
@@ -87,12 +92,14 @@ class Calinf extends Message
     }
 
     /**
-     * Vessel call information
+     * Vessel call information.
+     *
      * @param $extVoyage
      * @param $line
      * @param $imoNumber
      * @param $vslName
      * @param $callsign
+     *
      * @return \EDI\Generator\Calinf
      */
     public function setVessel($extVoyage, $line, $imoNumber, $vslName, $callsign)
@@ -104,8 +111,10 @@ class Calinf extends Message
     }
 
     /**
-     * Estimated Time of Arrival
+     * Estimated Time of Arrival.
+     *
      * @param $dtm
+     *
      * @return \EDI\Generator\Calinf
      */
     public function setEta($dtm)
@@ -116,8 +125,10 @@ class Calinf extends Message
     }
 
     /**
-     * Estimated Time of Departure
+     * Estimated Time of Departure.
+     *
      * @param $dtm
+     *
      * @return \EDI\Generator\Calinf
      */
     public function setEtd($dtm)
@@ -131,11 +142,12 @@ class Calinf extends Message
      * Compose.
      *
      * @param mixed $sMessageFunctionCode (1225)
-     * @param mixed $sDocumentNameCode (1001)
-     * @param mixed $sDocumentIdentifier (1004)
+     * @param mixed $sDocumentNameCode    (1001)
+     * @param mixed $sDocumentIdentifier  (1004)
+     *
+     * @throws \EDI\Generator\EdifactException
      *
      * @return \EDI\Generator\Message ::compose()
-     * @throws \EDI\Generator\EdifactException
      */
     public function compose(?string $sMessageFunctionCode = '5', ?string $sDocumentNameCode = '96', ?string $sDocumentIdentifier = null): parent
     {

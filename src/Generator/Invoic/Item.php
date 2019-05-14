@@ -8,8 +8,7 @@ use EDI\Generator\Message;
 use EDI\Generator\Traits\Item as ItemTrait;
 
 /**
- * Class Item
- * @package EDI\Generator\Invoic
+ * Class Item.
  */
 class Item extends Base
 {
@@ -27,7 +26,6 @@ class Item extends Base
     /** @var int */
     protected $discountIndex = 0;
 
-
     /**
      * @return array
      */
@@ -38,6 +36,7 @@ class Item extends Base
 
     /**
      * @param string $invoiceDescription
+     *
      * @return Item
      */
     public function setInvoiceDescription($invoiceDescription)
@@ -48,12 +47,12 @@ class Item extends Base
         return $this;
     }
 
-
     /**
      * @param $qualifier
      * @param $value
-     * @param int $priceBase
+     * @param int    $priceBase
      * @param string $priceBaseUnit
+     *
      * @return array
      */
     public static function addPRISegment($qualifier, $value, $priceBase = 1, $priceBaseUnit = 'PCE')
@@ -65,9 +64,9 @@ class Item extends Base
                 EdiFactNumber::convert($value),
                 '',
                 '',
-                (string)$priceBase,
-                $priceBaseUnit
-            ]
+                (string) $priceBase,
+                $priceBaseUnit,
+            ],
         ];
     }
 
@@ -81,12 +80,14 @@ class Item extends Base
 
     /**
      * @param string $grossPrice
+     *
      * @return Item
      */
     public function setGrossPrice($grossPrice)
     {
         $this->grossPrice = self::addPRISegment('GRP', $grossPrice);
         $this->addKeyToCompose('grossPrice');
+
         return $this;
     }
 
@@ -100,23 +101,26 @@ class Item extends Base
 
     /**
      * @param string $netPrice
+     *
      * @return Item
      */
     public function setNetPrice($netPrice)
     {
         $this->netPrice = self::addPRISegment('NTP', $netPrice);
         $this->addKeyToCompose('netPrice');
+
         return $this;
     }
 
     /**
      * @param $value
      * @param string $discountType
+     *
      * @return Item
      */
     public function addDiscount($value, $discountType = self::DISCOUNT_TYPE_PERCENT)
     {
-        $index = 'discount' . $this->discountIndex++;
+        $index = 'discount'.$this->discountIndex++;
         $this->{$index} = [
             'ALC',
             '',
@@ -129,19 +133,19 @@ class Item extends Base
         $this->addKeyToCompose($index);
 
         if ($discountType == self::DISCOUNT_TYPE_PERCENT) {
-            $index = 'discount' . $this->discountIndex++;
+            $index = 'discount'.$this->discountIndex++;
             $this->{$index} = [
                 'PCD',
                 [
                     '',
                     '3',
-                    EdiFactNumber::convert(abs($value))
-                ]
+                    EdiFactNumber::convert(abs($value)),
+                ],
             ];
             $this->addKeyToCompose($index);
         }
 
-        $index = 'discount' . $this->discountIndex++;
+        $index = 'discount'.$this->discountIndex++;
         $this->{$index} = self::addMOASegment('8', abs($value));
         $this->addKeyToCompose($index);
 

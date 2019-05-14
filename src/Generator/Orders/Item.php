@@ -5,8 +5,7 @@ namespace EDI\Generator\Orders;
 use EDI\Generator\Base;
 
 /**
- * Class Item
- * @package EDI\Generator\Orders
+ * Class Item.
  */
 class Item extends Base
 {

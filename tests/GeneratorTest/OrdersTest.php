@@ -9,8 +9,7 @@ use EDI\Generator\Orders;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class OrdersTest
- * @package GeneratorTest
+ * Class OrdersTest.
  */
 class OrdersTest extends TestCase
 {
@@ -61,7 +60,6 @@ class OrdersTest extends TestCase
             $orders->addItem($item);
             $orders->compose();
 
-
             $encoder = new Encoder($interchange->addMessage($orders)->getComposed(), true);
             $encoder->setUNA(":+,? '");
 
@@ -70,7 +68,7 @@ class OrdersTest extends TestCase
 
             $this->assertStringContainsString('UNT+22', $message);
         } catch (EdifactException $e) {
-            fwrite(STDOUT, "\n\nORDERS\n" . $e->getMessage());
+            fwrite(STDOUT, "\n\nORDERS\n".$e->getMessage());
         }
     }
 
@@ -166,7 +164,6 @@ class OrdersTest extends TestCase
                 ->setGrossPrice(99);
             $orders->addItem($item);
 
-
             $orders->compose();
             $encoder = new Encoder($interchange->addMessage($orders)->getComposed(), true);
             $encoder->setUNA(":+,? '");
@@ -176,13 +173,13 @@ class OrdersTest extends TestCase
 
             $this->assertStringContainsString('UNT+27', $message);
         } catch (EdifactException $e) {
-            fwrite(STDOUT, "\n\nORDERS\n" . $e->getMessage());
+            fwrite(STDOUT, "\n\nORDERS\n".$e->getMessage());
         }
     }
 
     public function testUSAStyle()
     {
-        $interchange = new Interchange('UNB-Identifier-Sender','UNB-Identifier-Receiver');
+        $interchange = new Interchange('UNB-Identifier-Sender', 'UNB-Identifier-Receiver');
         $interchange->setCharset('UNOA', '2');
         $orders = new Orders();
 
@@ -196,9 +193,7 @@ class OrdersTest extends TestCase
 
         $message = str_replace("'", "'\n", $encoder->get());
         $this->assertStringContainsString('PRI+AAA:1.86:::1:PCE', $message);
-
     }
-
 
     public function testFreeText()
     {
@@ -209,16 +204,15 @@ class OrdersTest extends TestCase
                     'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet.',
                     'ORI',
                     'HAE'
-                )]))->get()
+                ), ]))->get()
         );
-
 
         $x = [
             'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commo',
             'do ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et ma',
             'gnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ',
             'ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat mas',
-            'sa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate '
+            'sa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate ',
         ];
     }
 }

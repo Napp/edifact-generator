@@ -9,9 +9,9 @@ use EDI\Generator\Traits\TransportData;
 use EDI\Generator\traits\VatAndCurrency;
 
 /**
- * Class Orders
+ * Class Orders.
+ *
  * @url http://www.unece.org/trade/untdid/d96b/trmd/orders_s.htm
- * @package EDI\Generator
  */
 class Orders extends Message
 {
@@ -114,7 +114,8 @@ class Orders extends Message
 
     /**
      * Orders constructor.
-     * @param null $messageId
+     *
+     * @param null   $messageId
      * @param string $identifier
      * @param string $version
      * @param string $release
@@ -149,8 +150,9 @@ class Orders extends Message
     }
 
     /**
-     * @return $this
      * @throws EdifactException
+     *
+     * @return $this
      */
     public function compose()
     {
@@ -165,9 +167,10 @@ class Orders extends Message
 
         // Segment Group 11 : Separator & Control Total
         $this->messageContent[] = ['UNS', 'S'];
-        $this->messageContent[] = ['CNT', '2', (string)count($this->items)];
+        $this->messageContent[] = ['CNT', '2', (string) count($this->items)];
 
         parent::compose();
+
         return $this;
     }
 
@@ -182,8 +185,10 @@ class Orders extends Message
     /**
      * @param string $orderNumber
      * @param string $documentType
-     * @return Orders
+     *
      * @throws EdifactException
+     *
+     * @return Orders
      */
     public function setOrderNumber($orderNumber, $documentType = '220')
     {
@@ -211,21 +216,25 @@ class Orders extends Message
             'YK8',
             '22B',
             '22E',
-            '23E'
+            '23E',
         ]);
         $this->orderNumber = ['BGM', $documentType, $orderNumber, '9'];
+
         return $this;
     }
 
     /**
-     * Order number without documentType validation
+     * Order number without documentType validation.
+     *
      * @param $orderNumber
      * @param string $documentType
+     *
      * @return $this
      */
     public function setCustomOrderNumber($orderNumber, $documentType = '220')
     {
         $this->orderNumber = ['BGM', $documentType, $orderNumber, '9'];
+
         return $this;
     }
 
@@ -239,12 +248,15 @@ class Orders extends Message
 
     /**
      * @param array $orderDate
-     * @return Orders
+     *
      * @throws EdifactException
+     *
+     * @return Orders
      */
     public function setOrderDate($orderDate)
     {
         $this->orderDate = $this->addDTMSegment($orderDate, '4');
+
         return $this;
     }
 
@@ -259,11 +271,13 @@ class Orders extends Message
     /**
      * @param string $name
      * @param string $identifier
+     *
      * @return Orders
      */
     public function setOrderContact($name, $identifier = '')
     {
         $this->orderContact = ['CTA', 'OC', [$identifier, $name]];
+
         return $this;
     }
 
@@ -278,11 +292,13 @@ class Orders extends Message
     /**
      * @param string $name
      * @param string $identifier
+     *
      * @return Orders
      */
     public function setPurchasingContact($name, $identifier = '')
     {
         $this->purchasingContact = ['CTA', 'PD', [$identifier, $name]];
+
         return $this;
     }
 
@@ -296,13 +312,16 @@ class Orders extends Message
 
     /**
      * @param string|\DateTime $documentDate
-     * @param int $formatQuantifier
-     * @return $this
+     * @param int              $formatQuantifier
+     *
      * @throws \EDI\Generator\EdifactException
+     *
+     * @return $this
      */
     public function setDocumentDate($documentDate, $formatQuantifier = EdifactDate::DATETIME)
     {
         $this->documentDate = $this->addDTMSegment($documentDate, '137', $formatQuantifier);
+
         return $this;
     }
 
@@ -316,13 +335,16 @@ class Orders extends Message
 
     /**
      * @param string|\DateTime $deliveryDate
-     * @param int $formatQuantifier
-     * @return $this
+     * @param int              $formatQuantifier
+     *
      * @throws \EDI\Generator\EdifactException
+     *
+     * @return $this
      */
     public function setDeliveryDate($deliveryDate, $formatQuantifier = EdifactDate::DATETIME)
     {
         $this->deliveryDate = $this->addDTMSegment($deliveryDate, '2', $formatQuantifier);
+
         return $this;
     }
 
@@ -337,12 +359,15 @@ class Orders extends Message
     /**
      * @param $deliveryDate
      * @param int $formatQuantifier
-     * @return $this
+     *
      * @throws \EDI\Generator\EdifactException
+     *
+     * @return $this
      */
     public function setDeliveryDateLatest($deliveryDate, $formatQuantifier = EdifactDate::DATETIME)
     {
         $this->deliveryDateLatest = $this->addDTMSegment($deliveryDate, '63', $formatQuantifier);
+
         return $this;
     }
 
@@ -356,24 +381,30 @@ class Orders extends Message
 
     /**
      * @param string|\DateTime $deliveryDateEarliest
-     * @param int $formatQuantifier
-     * @return $this
+     * @param int              $formatQuantifier
+     *
      * @throws \EDI\Generator\EdifactException
+     *
+     * @return $this
      */
     public function setDeliveryDateEarliest($deliveryDateEarliest, $formatQuantifier = EdifactDate::DATETIME)
     {
         $this->deliveryDateEarliest = $this->addDTMSegment($deliveryDateEarliest, '64', $formatQuantifier);
+
         return $this;
     }
 
     /**
      * @param $accountNumber
-     * @return Orders
+     *
      * @throws \EDI\Generator\EdifactException
+     *
+     * @return Orders
      */
     public function setAccountNumber($accountNumber)
     {
         $this->accountNumber = $this->addRFFSegment('ADE', $accountNumber);
+
         return $this;
     }
 
@@ -394,13 +425,16 @@ class Orders extends Message
     }
 
     /**
-     * set a reference for qualifier ACD
+     * set a reference for qualifier ACD.
+     *
      * @param string $collectiveOrderNumber
+     *
      * @return Orders
      */
     public function setCollectiveOrderNumber($collectiveOrderNumber)
     {
         $this->collectiveOrderNumber = $this->addRFFSegment('ACD', $collectiveOrderNumber);
+
         return $this;
     }
 
@@ -413,13 +447,16 @@ class Orders extends Message
     }
 
     /**
-     * set a reference for qualifier AAS
+     * set a reference for qualifier AAS.
+     *
      * @param string $internalIdentifier
+     *
      * @return Orders
      */
     public function setInternalIdentifier($internalIdentifier)
     {
         $this->internalIdentifier = $this->addRFFSegment('AAS', $internalIdentifier);
+
         return $this;
     }
 
@@ -432,13 +469,16 @@ class Orders extends Message
     }
 
     /**
-     * set a reference for qualifier AEP
+     * set a reference for qualifier AEP.
+     *
      * @param string $objectNumber
+     *
      * @return Orders
      */
     public function setObjectNumber($objectNumber)
     {
         $this->objectNumber = $this->addRFFSegment('AEP', $objectNumber);
+
         return $this;
     }
 
@@ -451,13 +491,16 @@ class Orders extends Message
     }
 
     /**
-     * set a reference for qualifier AFO
+     * set a reference for qualifier AFO.
+     *
      * @param string $objectDescription1
+     *
      * @return Orders
      */
     public function setObjectDescription1($objectDescription1)
     {
         $this->objectDescription1 = $this->addRFFSegment('AFO', $objectDescription1);
+
         return $this;
     }
 
@@ -470,13 +513,16 @@ class Orders extends Message
     }
 
     /**
-     * set a reference for qualifier AFP
+     * set a reference for qualifier AFP.
+     *
      * @param string $objectDescription2
+     *
      * @return Orders
      */
     public function setObjectDescription2($objectDescription2)
     {
         $this->objectDescription2 = $this->addRFFSegment('AFP', $objectDescription2);
+
         return $this;
     }
 
@@ -490,11 +536,13 @@ class Orders extends Message
 
     /**
      * @param string $orderDescription
+     *
      * @return Orders
      */
     public function setOrderDescription($orderDescription)
     {
         $this->orderDescription = self::addFTXSegment($orderDescription, 'ORI');
+
         return $this;
     }
 
@@ -508,11 +556,13 @@ class Orders extends Message
 
     /**
      * @param string $orderNotification
+     *
      * @return Orders
      */
     public function setOrderNotification($orderNotification)
     {
         $this->orderNotification = self::addFTXSegment($orderNotification, 'DIN');
+
         return $this;
     }
 
@@ -526,8 +576,10 @@ class Orders extends Message
 
     /**
      * @param string $deliveryTerms
-     * @return Orders
+     *
      * @throws EdifactException
+     *
+     * @return Orders
      */
     public function setDeliveryTerms($deliveryTerms)
     {
@@ -536,6 +588,7 @@ class Orders extends Message
             ['CAF', 'CIP', 'CPT', 'DDP', 'DAF', 'FCA', 'CAI', 'ZZZ']
         );
         $this->deliveryTerms = ['TOD', '6', '', $deliveryTerms];
+
         return $this;
     }
 }

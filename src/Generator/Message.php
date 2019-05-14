@@ -3,8 +3,7 @@
 namespace EDI\Generator;
 
 /**
- * Class Message
- * @package EDI\Generator
+ * Class Message.
  */
 class Message extends Base
 {
@@ -18,6 +17,7 @@ class Message extends Base
 
     /**
      * Message constructor.
+     *
      * @param $identifier
      * @param $version
      * @param null $release
@@ -42,7 +42,7 @@ class Message extends Base
         }
 
         if ($messageID === null) {
-            $this->messageID = 'M' . strtoupper(uniqid());
+            $this->messageID = 'M'.strtoupper(uniqid());
         } else {
             $this->messageID = $messageID;
         }
@@ -50,6 +50,7 @@ class Message extends Base
 
     /**
      * Compose.
+     *
      * @throws \EDI\Generator\EdifactException
      */
     public function compose()
@@ -69,7 +70,7 @@ class Message extends Base
         }
 
         // Message Trailer
-        $aComposed[] = ['UNT', (string)(2 + count($this->messageContent)), $this->messageID];
+        $aComposed[] = ['UNT', (string) (2 + count($this->messageContent)), $this->messageID];
 
         $this->composed = $aComposed;
 
@@ -79,10 +80,12 @@ class Message extends Base
     /**
      * DTM segment
      * $type = 7 (actual date time), 132 (estimated date time), 137 (message date time), 798 (weight date time)
-     * $format = 203 (CCYYMMDDHHII)
+     * $format = 203 (CCYYMMDDHHII).
+     *
      * @param $type
      * @param $dtmString
      * @param int $format
+     *
      * @return array
      */
     public static function dtmSegment($type, $dtmString, $format = 203)
@@ -93,9 +96,11 @@ class Message extends Base
     /**
      * RFF segment
      * $functionCode = DE 1153
-     * $identifier = max 35 alphanumeric chars
+     * $identifier = max 35 alphanumeric chars.
+     *
      * @param $functionCode
      * @param $identifier
+     *
      * @return array
      */
     public static function rffSegment($functionCode, $identifier)
@@ -107,10 +112,12 @@ class Message extends Base
      * LOC segment
      * $qualifier = DE 3227
      * $firstLoc = preferred [locode, 139, 6]
-     * $secondaryLoc = preferred [locode, 139, 6] (if needed)
+     * $secondaryLoc = preferred [locode, 139, 6] (if needed).
+     *
      * @param $qualifier
      * @param $firstLoc
      * @param null $secondaryLoc
+     *
      * @return array
      */
     public static function locSegment($qualifier, $firstLoc, $secondaryLoc = null)
@@ -130,13 +137,15 @@ class Message extends Base
      * $dimension = [XXXX, 102, 5]
      * $supplier = DE 8077, but usually empty
      * $statusCode = DE 8249
-     * $fullEmptyIndicatorCode = DE 8169
+     * $fullEmptyIndicatorCode = DE 8169.
+     *
      * @param $eqpType
      * @param $eqpIdentification
      * @param $dimension
      * @param null $supplier
      * @param null $statusCode
      * @param null $fullEmptyIndicatorCode
+     *
      * @return array
      */
     public static function eqdSegment($eqpType, $eqpIdentification, $dimension, $supplier = null, $statusCode = null, $fullEmptyIndicatorCode = null)
@@ -164,7 +173,8 @@ class Message extends Base
      * $carrier
      * $transitDirection = DE 8101 (not used)
      * $$excessTransportation = DE 8457 (not used)
-     * $transportationIdentification
+     * $transportationIdentification.
+     *
      * @param $stageQualifier
      * @param $journeyIdentifier
      * @param $modeOfTransport
@@ -173,6 +183,7 @@ class Message extends Base
      * @param $transitDirection
      * @param $excessTransportation
      * @param $transportationIdentification
+     *
      * @return array
      */
     public static function tdtSegment($stageQualifier, $journeyIdentifier, $modeOfTransport, $transportMeans, $carrier, $transitDirection, $excessTransportation, $transportationIdentification)
@@ -185,6 +196,7 @@ class Message extends Base
      * @param $journeyIdentifier
      * @param $modeOfTransport
      * @param $transportMeans
+     *
      * @return array
      */
     public static function tdtShortSegment($stageQualifier, $journeyIdentifier, $modeOfTransport, $transportMeans)
@@ -196,6 +208,7 @@ class Message extends Base
      * @param string $text
      * @param string $qualifier
      * @param string $reference
+     *
      * @return array
      */
     public static function addFTXSegment($text, $qualifier, $reference = '')

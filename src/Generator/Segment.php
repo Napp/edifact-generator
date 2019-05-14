@@ -3,8 +3,7 @@
 namespace EDI\Generator;
 
 /**
- * Class Segment
- * @package EDI\Generator
+ * Class Segment.
  */
 class Segment
 {

@@ -3,8 +3,7 @@
 namespace EDI\Generator;
 
 /**
- * Class Interchange
- * @package EDI\Generator
+ * Class Interchange.
  */
 class Interchange
 {
@@ -20,6 +19,7 @@ class Interchange
 
     /**
      * Interchange constructor.
+     *
      * @param $sender
      * @param $receiver
      * @param null $date
@@ -31,7 +31,7 @@ class Interchange
         $this->messages = [];
 
         if ($interchangeCode === null) {
-            $this->interchangeCode = 'I' . strtoupper(uniqid());
+            $this->interchangeCode = 'I'.strtoupper(uniqid());
         } else {
             $this->interchangeCode = $interchangeCode;
         }
@@ -55,9 +55,11 @@ class Interchange
     /**
      * Change the default character set
      * $identifier Syntax identifier
-     * $version Syntax version
+     * $version Syntax version.
+     *
      * @param $identifier
      * @param $version
+     *
      * @return $this
      */
     public function setCharset($identifier, $version)
@@ -68,8 +70,10 @@ class Interchange
     }
 
     /**
-     * Add a Message to the Interchange
+     * Add a Message to the Interchange.
+     *
      * @param $msg
+     *
      * @return $this
      */
     public function addMessage($msg)
@@ -80,7 +84,8 @@ class Interchange
     }
 
     /**
-     * Format the Interchange segments
+     * Format the Interchange segments.
+     *
      * @return $this
      */
     public function compose()
@@ -92,14 +97,15 @@ class Interchange
                 $temp[] = $i;
             }
         }
-        $temp[] = ['UNZ', (string)count($this->messages), $this->interchangeCode];
+        $temp[] = ['UNZ', (string) count($this->messages), $this->interchangeCode];
         $this->composed = $temp;
 
         return $this;
     }
 
     /**
-     * Return composed message as array
+     * Return composed message as array.
+     *
      * @return array
      */
     public function getComposed()

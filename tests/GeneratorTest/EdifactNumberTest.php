@@ -6,8 +6,7 @@ use EDI\Generator\EdiFactNumber;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class EdifactNumberTest
- * @package GeneratorTest
+ * Class EdifactNumberTest.
  */
 class EdifactNumberTest extends TestCase
 {
@@ -42,7 +41,6 @@ class EdifactNumberTest extends TestCase
             EdiFactNumber::convert('100,223')
         );
     }
-
 
     public function testNumberNegative()
     {

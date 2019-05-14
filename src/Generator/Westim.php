@@ -3,8 +3,7 @@
 namespace EDI\Generator;
 
 /**
- * Class Westim
- * @package EDI\Generator
+ * Class Westim.
  */
 class Westim extends Message
 {
@@ -27,12 +26,12 @@ class Westim extends Message
     /**
      * Construct.
      *
-     * @param mixed $sMessageReferenceNumber (0062)
-     * @param string $sMessageType (0065)
-     * @param string $sMessageVersionNumber (0052)
-     * @param string $sMessageReleaseNumber (0054)
+     * @param mixed  $sMessageReferenceNumber        (0062)
+     * @param string $sMessageType                   (0065)
+     * @param string $sMessageVersionNumber          (0052)
+     * @param string $sMessageReleaseNumber          (0054)
      * @param string $sMessageControllingAgencyCoded (0051)
-     * @param string $sAssociationAssignedCode (0057)
+     * @param string $sAssociationAssignedCode       (0057)
      */
     public function __construct(
         $sMessageReferenceNumber = null,
@@ -57,9 +56,11 @@ class Westim extends Message
     }
 
     /**
-     * $day = YYMMDD (used also in RFF+EST)
+     * $day = YYMMDD (used also in RFF+EST).
+     *
      * @param $day
      * @param null $time
+     *
      * @return \EDI\Generator\Westim
      */
     public function setTransactionDate($day, $time = null)
@@ -75,8 +76,10 @@ class Westim extends Message
     }
 
     /**
-     * $currency = XXX (three letter code)
+     * $currency = XXX (three letter code).
+     *
      * @param $currency
+     *
      * @return \EDI\Generator\Westim
      */
     public function setCurrency($currency)
@@ -87,8 +90,10 @@ class Westim extends Message
     }
 
     /**
-     * $labourRate = \d+.\d{2}
+     * $labourRate = \d+.\d{2}.
+     *
      * @param $labourRate
+     *
      * @return \EDI\Generator\Westim
      */
     public function setLabourRate($labourRate)
@@ -99,9 +104,11 @@ class Westim extends Message
     }
 
     /**
-     * Can be equal to the sender and receiver ID in UNH
+     * Can be equal to the sender and receiver ID in UNH.
+     *
      * @param $from
      * @param $to
+     *
      * @return \EDI\Generator\Westim
      */
     public function setPartners($from, $to)
@@ -113,11 +120,13 @@ class Westim extends Message
     }
 
     /**
-     * Container number separated between letters and numbers
+     * Container number separated between letters and numbers.
+     *
      * @param $ownerCode
      * @param $serial
      * @param $isoSize
      * @param int $maximumGrossWeight
+     *
      * @return \EDI\Generator\Westim
      */
     public function setContainer($ownerCode, $serial, $isoSize, $maximumGrossWeight = 0)
@@ -128,8 +137,10 @@ class Westim extends Message
     }
 
     /**
-     * Full or Empty
+     * Full or Empty.
+     *
      * @param $fullEmpty
+     *
      * @return \EDI\Generator\Westim
      */
     public function setFullEmpty($fullEmpty)
@@ -140,8 +151,10 @@ class Westim extends Message
     }
 
     /**
-     * Full or Empty
+     * Full or Empty.
+     *
      * @param \EDI\Generator\Westim\Damage $damage
+     *
      * @return \EDI\Generator\Westim
      */
     public function addDamage(Westim\Damage $damage)
@@ -158,6 +171,7 @@ class Westim extends Message
      * @param $handling
      * @param $tax
      * @param $invoiceAmount
+     *
      * @return \EDI\Generator\Westim
      */
     public function setCostTotals($responsibility, $labour, $material, $handling, $tax, $invoiceAmount)
@@ -171,6 +185,7 @@ class Westim extends Message
      * @param $grandTotal
      * @param null $authorizedAmount
      * @param null $taxRate
+     *
      * @return \EDI\Generator\Westim
      */
     public function setTotalMessageAmounts($grandTotal, $authorizedAmount = null, $taxRate = null)
@@ -190,11 +205,12 @@ class Westim extends Message
      * Compose.
      *
      * @param mixed $sMessageFunctionCode (1225)
-     * @param mixed $sDocumentNameCode (1001)
-     * @param mixed $sDocumentIdentifier (1004)
+     * @param mixed $sDocumentNameCode    (1001)
+     * @param mixed $sDocumentIdentifier  (1004)
+     *
+     * @throws \EDI\Generator\EdifactException
      *
      * @return \EDI\Generator\Message ::compose()
-     * @throws \EDI\Generator\EdifactException
      */
     public function compose(?string $sMessageFunctionCode = null, ?string $sDocumentNameCode = null, ?string $sDocumentIdentifier = null): parent
     {

@@ -3,9 +3,7 @@
 namespace EDI\Generator\Traits;
 
 /**
- * Trait NameAndAddress
- *
- * @package EDI\Generator\Traits
+ * Trait NameAndAddress.
  */
 trait NameAndAddress
 {
@@ -170,6 +168,7 @@ trait NameAndAddress
         if ($name3) {
             $name[] = self::maxChars($name3);
         }
+
         return [
             'NAD',
             $type,
@@ -575,10 +574,8 @@ trait NameAndAddress
             $sender ?? ''
         );
 
-
         return $this;
     }
-
 
     /**
      * @return array
@@ -624,6 +621,7 @@ trait NameAndAddress
             'WS',
             $sender
         );
+
         return $this;
     }
 
@@ -671,6 +669,7 @@ trait NameAndAddress
             'ST',
             $sender
         );
+
         return $this;
     }
 
@@ -707,6 +706,7 @@ trait NameAndAddress
             $managingOrganisation,
             'IV'
         );
+
         return $this;
     }
 }

@@ -3,8 +3,7 @@
 namespace EDI\Generator;
 
 /**
- * Class Vermas
- * @package EDI\Generator
+ * Class Vermas.
  */
 class Vermas extends Message
 {
@@ -20,12 +19,12 @@ class Vermas extends Message
     /**
      * Construct.
      *
-     * @param mixed $sMessageReferenceNumber (0062)
-     * @param string $sMessageType (0065)
-     * @param string $sMessageVersionNumber (0052)
-     * @param string $sMessageReleaseNumber (0054)
+     * @param mixed  $sMessageReferenceNumber        (0062)
+     * @param string $sMessageType                   (0065)
+     * @param string $sMessageVersionNumber          (0052)
+     * @param string $sMessageReleaseNumber          (0054)
      * @param string $sMessageControllingAgencyCoded (0051)
-     * @param string $sAssociationAssignedCode (0057)
+     * @param string $sAssociationAssignedCode       (0057)
      */
     public function __construct(
         $sMessageReferenceNumber = null,
@@ -48,8 +47,10 @@ class Vermas extends Message
     }
 
     /**
-     * Date of the message submission
+     * Date of the message submission.
+     *
      * @param $dtm
+     *
      * @return \EDI\Generator\Vermas
      */
     public function setDTMMessageSendingTime($dtm)
@@ -60,8 +61,10 @@ class Vermas extends Message
     }
 
     /**
-     * $line: Master Liner Codes List
+     * $line: Master Liner Codes List.
+     *
      * @param $line
+     *
      * @return \EDI\Generator\Vermas
      */
     public function setCarrier($line)
@@ -74,8 +77,10 @@ class Vermas extends Message
     /**
      * $cntFunctionCode: DE 3139
      * $cntIdentifier: free text
-     * $cntName: free text
+     * $cntName: free text.
+     *
      * @param $companyName
+     *
      * @return \EDI\Generator\Vermas
      */
     public function setMessageSenderCompany($companyName)
@@ -88,10 +93,12 @@ class Vermas extends Message
     /**
      * $cntFunctionCode: DE 3139
      * $cntIdentifier: free text
-     * $cntName: free text
+     * $cntName: free text.
+     *
      * @param $cntFunctionCode
      * @param $cntIdentifier
      * @param $cntName
+     *
      * @return \EDI\Generator\Vermas
      */
     public function setMessageSender($cntFunctionCode, $cntIdentifier, $cntName)
@@ -103,9 +110,11 @@ class Vermas extends Message
 
     /**
      * $comType: DE 3155
-     * $comData: free text
+     * $comData: free text.
+     *
      * @param $comType
      * @param $comData
+     *
      * @return \EDI\Generator\Vermas
      */
     public function setMessageSenderInformation($comType, $comData)
@@ -117,6 +126,7 @@ class Vermas extends Message
 
     /**
      * @param \EDI\Generator\Vermas\Container $container
+     *
      * @return $this
      */
     public function addContainer(Vermas\Container $container)
@@ -130,13 +140,14 @@ class Vermas extends Message
      * Compose.
      *
      * @param mixed $sMessageFunctionCode (1225)
-     * @param mixed $sDocumentNameCode (1001)
-     * @param mixed $sDocumentIdentifier (1004)
+     * @param mixed $sDocumentNameCode    (1001)
+     * @param mixed $sDocumentIdentifier  (1004)
+     *
+     * @throws \EDI\Generator\EdifactException
      *
      * @return \EDI\Generator\Message ::compose()
-     * @throws \EDI\Generator\EdifactException
      */
-    public function compose(?string $sMessageFunctionCode = "5", ?string $sDocumentNameCode = "749", ?string $sDocumentIdentifier = null): parent
+    public function compose(?string $sMessageFunctionCode = '5', ?string $sDocumentNameCode = '749', ?string $sDocumentIdentifier = null): parent
     {
         $this->messageContent = [
             ['BGM', $sDocumentNameCode, $this->messageID, $sMessageFunctionCode],

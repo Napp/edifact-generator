@@ -6,7 +6,7 @@ use EDI\Generator\Segment;
 
 /**
  * Percentage Details.
-
+ *
  * @see https://service.unece.org/trade/untdid/d17b/trsd/trsdpcd.htm
  */
 class PercentageDetails extends Segment
@@ -72,7 +72,7 @@ class PercentageDetails extends Segment
     }
 
     /**
-     * Set Status Description Code
+     * Set Status Description Code.
      *
      * @param mixed $sStatusDescriptionCode (4405)
      *

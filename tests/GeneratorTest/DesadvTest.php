@@ -9,14 +9,14 @@ use EDI\Generator\Interchange;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class DesadvTest
- * @package GeneratorTest
+ * Class DesadvTest.
  */
 final class DesadvTest extends TestCase
 {
     public function testDeliverNoteNumber()
     {
         $desadv = new Desadv();
+
         try {
             $desadv->setDeliveryNoteNumber(
                 Desadv::DELIVER_NOTE,
@@ -28,13 +28,14 @@ final class DesadvTest extends TestCase
         $this->assertEquals([
             'BGM',
             '270',
-            'LS123456789'
+            'LS123456789',
         ], $array);
     }
 
     /**
-     * @return \DateTime|false
      * @throws \Exception
+     *
+     * @return \DateTime|false
      */
     private function getDateTime()
     {
@@ -49,7 +50,6 @@ final class DesadvTest extends TestCase
         (new Desadv())
             ->setDeliveryNoteNumber('XXX', 'LS123456789');
     }
-
 
     public function testNameAndAddress()
     {
@@ -67,10 +67,8 @@ final class DesadvTest extends TestCase
                     '9',
                     'SU',
                     'partnerId'
-                )]))->get()
+                ), ]))->get()
         );
-
-
 
         $desadv = (new Desadv())
             ->setManufacturerAddress(
@@ -89,19 +87,19 @@ final class DesadvTest extends TestCase
             [
                 '',
                 '',
-                'ZZZ'
+                'ZZZ',
             ],
             '',
             [
                 'Name 1',
                 'Name 2',
-                'Name 3'
+                'Name 3',
             ],
             [
-                'street'
+                'street',
             ],
             [
-                'city'
+                'city',
             ],
             [
                 '',
@@ -114,7 +112,6 @@ final class DesadvTest extends TestCase
             ],
         ], $desadv->getManufacturerAddress());
     }
-
 
     public function testDesadv()
     {
@@ -162,8 +159,7 @@ final class DesadvTest extends TestCase
                     '8290123'
                 )
                 ->setQuantity('3')
-                ->setOrderNumberWholesaler('MyOrderNumber')
-            ;
+                ->setOrderNumberWholesaler('MyOrderNumber');
             $desadv->addItem($item);
             $desadv->compose();
             $encoder = new Encoder($interchange->addMessage($desadv)->getComposed(), true);
@@ -179,7 +175,7 @@ final class DesadvTest extends TestCase
             $this->assertStringContainsString('CTA++', $message);
             $this->assertStringContainsString('COM+', $message);
         } catch (EdifactException $e) {
-            fwrite(STDOUT, "\n\nDESADV\n" . $e->getMessage());
+            fwrite(STDOUT, "\n\nDESADV\n".$e->getMessage());
         }
     }
 }

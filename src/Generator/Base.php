@@ -3,13 +3,10 @@
 namespace EDI\Generator;
 
 /**
- * Class Base
- *
- * @package EDI\Generator
+ * Class Base.
  */
 class Base
 {
-
     /** @var array */
     protected $messageContent = [];
 
@@ -34,12 +31,13 @@ class Base
     }
 
     /**
-     * compose message by keys givven in an ordered array
+     * compose message by keys givven in an ordered array.
      *
      * @param array $keys
      *
-     * @return array
      * @throws EdifactException
+     *
+     * @return array
      */
     public function composeByKeys($keys = null)
     {
@@ -53,12 +51,12 @@ class Base
                     if ($value) {
                         $this->messageContent[] = $value;
                     } else {
-                        throw new EdifactException("key " . $key . " returns no array structure");
+                        throw new EdifactException('key '.$key.' returns no array structure');
                     }
                 }
             } else {
                 throw new EdifactException(
-                    'key: ' . $key . ' not found for composeByKeys in ' . get_class($this) . '->' .
+                    'key: '.$key.' not found for composeByKeys in '.get_class($this).'->'.
                     debug_backtrace()[1]['function']
                 );
             }
@@ -115,7 +113,6 @@ class Base
         return $this;
     }
 
-
     /**
      * @param string, $functionCode
      * @param $identifier
@@ -143,16 +140,18 @@ class Base
      * @param int $formatQualifier
      *
      * @see http://www.unece.org/trade/untdid/d96a/trsd/trsddtm.htm
-     * @return array
+     *
      * @throws EdifactException
+     *
+     * @return array
      */
     protected function addDTMSegment($dateString, $type, $formatQualifier = EdifactDate::DATE)
     {
         $data = [];
-        $data[] = (string)$type;
+        $data[] = (string) $type;
         if (!empty($dateString)) {
             $data[] = EdifactDate::get($dateString, $formatQualifier);
-            $data[] = (string)$formatQualifier;
+            $data[] = (string) $formatQualifier;
         }
 
         return ['DTM', $data];
@@ -178,10 +177,10 @@ class Base
     }
 
     /**
-     * Crop String to max char length
+     * Crop String to max char length.
      *
      * @param string $string
-     * @param int $length
+     * @param int    $length
      *
      * @return string
      */
@@ -195,7 +194,6 @@ class Base
     }
 
     /**
-     *
      * @param      $value
      * @param      $array
      * @param null $errorMessage
@@ -205,15 +203,14 @@ class Base
     protected function isAllowed($value, $array, $errorMessage = null)
     {
         if ($errorMessage === null) {
-            $errorMessage = 'value: ' . $value . ' is not in allowed values: ' .
-                ' [' . implode(', ', $array) . '] in ' . get_class($this) . '->' .
+            $errorMessage = 'value: '.$value.' is not in allowed values: '.
+                ' ['.implode(', ', $array).'] in '.get_class($this).'->'.
                 debug_backtrace()[1]['function'];
         }
         if (!in_array($value, $array, true)) {
             throw new EdifactException($errorMessage);
         }
     }
-
 
     /**
      * @param $qualifier
@@ -227,7 +224,7 @@ class Base
             'MOA',
             [
                 '',
-                (string)$qualifier,
+                (string) $qualifier,
                 EdiFactNumber::convert($value),
             ],
         ];

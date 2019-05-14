@@ -8,9 +8,9 @@ use EDI\Generator\Traits\NameAndAddress;
 use EDI\Generator\Traits\TransportData;
 
 /**
- * Class Desadv
+ * Class Desadv.
+ *
  * @url http://www.unece.org/trade/untdid/d96b/trmd/desadv_s.htm
- * @package EDI\Generator
  */
 class Desadv extends Message
 {
@@ -45,13 +45,14 @@ class Desadv extends Message
         'faxNumber',
         'wholesalerAddress',
         'deliveryAddress',
-        'transportData'
+        'transportData',
     ];
 
     /**
      * Desadv constructor.
-     * @param null $messageId
-     * @param string $identifier
+     *
+     * @param null        $messageId
+     * @param string      $identifier
      * @param string|null $version
      * @param string|null $release
      * @param string|null $controllingAgency
@@ -84,22 +85,25 @@ class Desadv extends Message
         $this->items[] = $item;
     }
 
-
     /**
-     * Set deliver note number
+     * Set deliver note number.
+     *
      * @param string $documentType
      * @param $number
-     * @return $this
+     *
      * @throws EdifactException
+     *
+     * @return $this
      */
     public function setDeliveryNoteNumber($documentType, $number)
     {
         $this->isAllowed($documentType, [
             self::DELIVERY_ADVICE,
             self::DELIVER_NOTE,
-            self::DELIVERY_NOTE_ADVICE
+            self::DELIVERY_NOTE_ADVICE,
         ]);
         $this->deliveryNoteNumber = ['BGM', $documentType, $number];
+
         return $this;
     }
 
@@ -121,12 +125,15 @@ class Desadv extends Message
 
     /**
      * @param string|\DateTime $shippingDate
-     * @return $this
+     *
      * @throws EdifactException
+     *
+     * @return $this
      */
     public function setShippingDate($shippingDate)
     {
         $this->shippingDate = $this->addDTMSegment($shippingDate, '17');
+
         return $this;
     }
 
@@ -140,12 +147,15 @@ class Desadv extends Message
 
     /**
      * @param string|\DateTime $deliveryDate
-     * @return $this
+     *
      * @throws EdifactException
+     *
+     * @return $this
      */
     public function setDeliveryDate($deliveryDate)
     {
         $this->deliveryDate = $this->addDTMSegment($deliveryDate, '11');
+
         return $this;
     }
 
@@ -159,19 +169,22 @@ class Desadv extends Message
 
     /**
      * @param string|\DateTime $deliveryNoteDate
-     * @return $this
+     *
      * @throws EdifactException
+     *
+     * @return $this
      */
     public function setDeliveryNoteDate($deliveryNoteDate)
     {
         $this->deliveryNoteDate = $this->addDTMSegment($deliveryNoteDate, '137');
+
         return $this;
     }
 
-
     /**
-     * @return $this
      * @throws EdifactException
+     *
+     * @return $this
      */
     public function compose()
     {

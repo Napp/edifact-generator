@@ -3,8 +3,7 @@
 namespace EDI\Generator\Westim;
 
 /**
- * Class Damage
- * @package EDI\Generator\Westim
+ * Class Damage.
  */
 class Damage
 {
@@ -17,12 +16,14 @@ class Damage
     }
 
     /**
-     * $line \d{2}
+     * $line \d{2}.
+     *
      * @param $line
      * @param $damageLocationCode
      * @param $componentCode
      * @param $damageTypeCode
      * @param $componentMaterialCode
+     *
      * @return \EDI\Generator\Westim\Damage
      */
     public function setDamage($line, $damageLocationCode, $componentCode, $damageTypeCode, $componentMaterialCode)
@@ -39,6 +40,7 @@ class Damage
      * @param $width
      * @param $height
      * @param $quantity
+     *
      * @return \EDI\Generator\Westim\Damage
      */
     public function setWork($repairMethodCode, $measureUnit, $length, $width, $height, $quantity)
@@ -53,6 +55,7 @@ class Damage
      * @param $materialCost
      * @param $responsibility
      * @param $labourRate
+     *
      * @return \EDI\Generator\Westim\Damage
      */
     public function setCost($manHours, $materialCost, $responsibility, $labourRate)

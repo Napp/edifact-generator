@@ -3,8 +3,7 @@
 namespace EDI\Generator;
 
 /**
- * Class Coreor
- * @package EDI\Generator
+ * Class Coreor.
  */
 class Coreor extends Message
 {
@@ -92,12 +91,12 @@ class Coreor extends Message
     /**
      * Construct.
      *
-     * @param mixed $sMessageReferenceNumber (0062)
-     * @param string $sMessageType (0065)
-     * @param string $sMessageVersionNumber (0052)
-     * @param string $sMessageReleaseNumber (0054)
+     * @param mixed  $sMessageReferenceNumber        (0062)
+     * @param string $sMessageType                   (0065)
+     * @param string $sMessageVersionNumber          (0052)
+     * @param string $sMessageReleaseNumber          (0054)
      * @param string $sMessageControllingAgencyCoded (0051)
-     * @param string $sAssociationAssignedCode (0057)
+     * @param string $sAssociationAssignedCode       (0057)
      */
     public function __construct(
         $sMessageReferenceNumber = null,
@@ -121,10 +120,11 @@ class Coreor extends Message
 
     /**
      * $size = 22G1, 42G1, ecc
-     * 2 = export, 5 = full
+     * 2 = export, 5 = full.
      *
      * @param $number
      * @param $expiration
+     *
      * @return $this
      */
     public function setReleaseNumberAndExpiration($number, $expiration)
@@ -137,6 +137,7 @@ class Coreor extends Message
 
     /**
      * @param $number
+     *
      * @return $this
      */
     public function setPreviousMessage($number)
@@ -147,12 +148,13 @@ class Coreor extends Message
     }
 
     /**
-     * Vessel information
+     * Vessel information.
      *
      * @param $extVoyage
      * @param $line
      * @param $vslName
      * @param $callsign
+     *
      * @return $this
      */
     public function setVessel($extVoyage, $line, $vslName, $callsign)
@@ -163,9 +165,10 @@ class Coreor extends Message
     }
 
     /**
-     * Port of Loading
+     * Port of Loading.
      *
      * @param $loc
+     *
      * @return $this
      */
     public function setPOL($loc)
@@ -176,10 +179,11 @@ class Coreor extends Message
     }
 
     /**
-     * Release terminal
+     * Release terminal.
      *
      * @param $loc
      * @param $terminal
+     *
      * @return $this
      */
     public function setPOD($loc, $terminal)
@@ -190,9 +194,10 @@ class Coreor extends Message
     }
 
     /**
-     * Estimated Time of Arrival
+     * Estimated Time of Arrival.
      *
      * @param $dtm
+     *
      * @return $this
      */
     public function setETA($dtm)
@@ -203,10 +208,8 @@ class Coreor extends Message
     }
 
     /**
-     *
-     */
-    /**
      * @param $sender
+     *
      * @return $this
      */
     public function setSender($sender)
@@ -217,10 +220,12 @@ class Coreor extends Message
     }
 
     /**
-     * $line: Master Liner Codes List
+     * $line: Master Liner Codes List.
      */
+
     /**
      * @param $line
+     *
      * @return $this
      */
     public function setCarrier($line)
@@ -235,6 +240,7 @@ class Coreor extends Message
      * @param $name
      * @param $address
      * @param $postalCode
+     *
      * @return $this
      */
     public function setForwarder($code, $name, $address, $postalCode)
@@ -252,6 +258,7 @@ class Coreor extends Message
      * @param $name
      * @param $address
      * @param $postalCode
+     *
      * @return $this
      */
     public function setCustomsBroker($code, $name, $address, $postalCode)
@@ -264,10 +271,10 @@ class Coreor extends Message
         return $this;
     }
 
-
     /**
      * @param $number
      * @param $size
+     *
      * @return $this
      */
     public function setContainer($number, $size)
@@ -279,6 +286,7 @@ class Coreor extends Message
 
     /**
      * @param $bl
+     *
      * @return $this
      */
     public function setBillOfLading($bl)
@@ -290,8 +298,10 @@ class Coreor extends Message
 
     /**
      * Weight information
-     * $type = T (tare), AET (gross weight)
+     * $type = T (tare), AET (gross weight).
+     *
      * @param $weight
+     *
      * @return \EDI\Generator\Coreor
      */
     public function setTare($weight)
@@ -303,6 +313,7 @@ class Coreor extends Message
 
     /**
      * @param $weight
+     *
      * @return $this
      */
     public function setCargoWeight($weight)
@@ -314,8 +325,10 @@ class Coreor extends Message
 
     /**
      * $seal = free text
-     * $sealIssuer = DE 9303
+     * $sealIssuer = DE 9303.
+     *
      * @param $seal
+     *
      * @return \EDI\Generator\Coreor
      */
     public function setSeal($seal)
@@ -326,9 +339,10 @@ class Coreor extends Message
     }
 
     /**
-     * Cargo category
+     * Cargo category.
      *
      * @param $text
+     *
      * @return $this
      */
     public function setCargoCategory($text)
@@ -339,10 +353,11 @@ class Coreor extends Message
     }
 
     /**
-     * Redelivery facility
+     * Redelivery facility.
      *
      * @param $loc
      * @param $terminal
+     *
      * @return $this
      */
     public function setEmptyDepot($loc, $terminal)
@@ -357,6 +372,7 @@ class Coreor extends Message
      * @param $name
      * @param $address
      * @param $postalCode
+     *
      * @return $this
      */
     public function setFreightPayer($code, $name, $address, $postalCode)
@@ -373,13 +389,14 @@ class Coreor extends Message
      * Compose.
      *
      * @param mixed $sMessageFunctionCode (1225)
-     * @param mixed $sDocumentNameCode (1001)
-     * @param mixed $sDocumentIdentifier (1004)
+     * @param mixed $sDocumentNameCode    (1001)
+     * @param mixed $sDocumentIdentifier  (1004)
+     *
+     * @throws \EDI\Generator\EdifactException
      *
      * @return \EDI\Generator\Message ::compose()
-     * @throws \EDI\Generator\EdifactException
      */
-    public function compose(?string $sMessageFunctionCode = "9", ?string $sDocumentNameCode = "129", ?string $sDocumentIdentifier = null): parent
+    public function compose(?string $sMessageFunctionCode = '9', ?string $sDocumentNameCode = '129', ?string $sDocumentIdentifier = null): parent
     {
         $this->messageContent = [
             ['BGM', $sDocumentNameCode, $this->messageID, $sMessageFunctionCode],

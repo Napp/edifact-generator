@@ -3,9 +3,9 @@
 namespace EDI\Generator;
 
 /**
- * Class EdifactCurrency
+ * Class EdifactCurrency.
+ *
  * @url http://www.unece.org/trade/untdid/d96b/uncl/uncl6343.htm
- * @package EDI\Generator
  */
 class EdifactCurrency
 {

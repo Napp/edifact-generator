@@ -5,8 +5,7 @@ namespace EDI\Generator\Ordrsp;
 use EDI\Generator\Base;
 
 /**
- * Class Item
- * @package EDI\Generator\Ordrsp
+ * Class Item.
  */
 class Item extends Base
 {
